@@ -1,0 +1,18 @@
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp(functions.config().firebase);
+var FCM = require('fcm-push');
+
+var serverKey = 'AAAAaeH-j9Y:APA91bF1IbUYsr2L0gPKqIZWf80eA6MDeF5Rz7nlJIwkV82OrwN9he4JD2IEwCAYQYoFyIixygERb-1dt1gYzPOfUfxGNv5Z4FuhhTC-x3719XcP4B8qSDBtOs_Dcl_pd28G0HP9Qk8x';
+var fcm = new FCM(serverKey);
+exports.sendNotificationToDevice= functions.database.instance('i-Farmo').ref('/User/Device').onUpdate(async event => {
+const token='cGfAkYirTE-8llVPxTWkj2:APA91bE_Vjb5PzErJhm8ZeGvTbJxPJZf5gxKvH6Zjf8G_wCG3qJXY2PoWslQWHrAbVS3-HS8v2-79tyFpMpLD8vKSALkov1xqe0PvaUdek9XWuluX41RZKbbpkEDBptrjdGkGntYSD6g';
+var payload = {
+data: {
+Message: 'I came to tell Device is missing'
+},
+notification: {
+title: 'Data Has been changed',
+body:'Device in Area 1 is changed',
+},
+};
